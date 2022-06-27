@@ -19,9 +19,11 @@ This is it.
 
 ## Lower level plan
 
-## TODO:
+1. Cam finds IP address of actual web server through a github.io page and stores it
+
+
+
+### TODO:
 * Hard-code the wifi ssid and password such that there's no need to set the camera up if it turns off - say for its power source going out.
 
 * Change rtsp code to the http routine I described
-
-
