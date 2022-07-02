@@ -81,3 +81,8 @@ def get_delay_flag():
 def index():
     global state
     return render_template("index.html", last_time=state["last_pic_time"])
+
+@app.route("/frames", methods=["GET"])
+def frames():
+    global state
+    return render_template("frames.html")
