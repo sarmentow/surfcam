@@ -1,6 +1,6 @@
 from flask import Flask, request, render_template
 import datetime
-from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor
+import configparser
 from utils import make_gif
 app = Flask(__name__)
 
@@ -10,7 +10,10 @@ state["img_number"] = 0
 state["burst_state"] = 0
 state["BURST_IMAGE_SIZE"] = 91
 state["delay_state"] = 0
-state["last_pic_time"] = ""
+state["last_pic_time"] = "?"
+
+config = configparser.ConfigParser()
+config.read("config.ini")
 
 @app.route("/status", methods=["GET"])
 def status():
@@ -80,7 +83,7 @@ def get_delay_flag():
 @app.route("/", methods=["GET"]) 
 def index():
     global state
-    return render_template("index.html", last_time=state["last_pic_time"])
+    return render_template("index.html", last_time=state["last_pic_time"], tab_title=config["server"]["tabtitle"], nav_title=config["server"]["navtitle"], location_subtitle=config["server"]["locationsubtitle"])
 
 @app.route("/frames", methods=["GET"])
 def frames():
